@@ -6,7 +6,7 @@
 
 El taller se centrará en la creación y evolución de un servidor web básico en Java, sin el uso de frameworks populares como Spark o Spring. Inicialmente, el servidor manejará múltiples solicitudes de manera secuencial, permitiendo la lectura de archivos locales para servir contenido estático, como páginas HTML, archivos JavaScript, CSS e imágenes.
 
-A medida que avance el taller, se introducirá la implementación de servicios REST en el backend, permitiendo la comunicación asíncrona con aplicaciones web. Además, el servidor se mejorará progresivamente hacia un framework funcional que facilitará el desarrollo de aplicaciones web. Esto incluirá la definición de servicios REST mediante funciones lambda, la gestión de parámetros en consultas, y la configuración eficiente de la ubicación de archivos estáticos, ofreciendo a los desarrolladores herramientas clave para proyectos modernos.
+A medida que avance el taller, se introducirá la implementación de servicios REST en el backend, permitiendo la comunicación asíncrona con aplicaciones web. Además, el servidor se mejorará progresivamente hacia un framework funcional que facilitará el desarrollo de aplicaciones web. Esto incluirá la definición de servicios REST mediante funciones lambda, la gestión de parámetros en consultas, y la configuración eficiente de la ubicación de archivos estáticos, ofreciendo a los desarrolladores herramientas clave para proyectos modernos. 
 
 ## Empezando
 
@@ -14,7 +14,7 @@ Estas instrucciones te permitirán obtener una copia del proyecto y ejecutarlo e
 
 ### Prerequisitos
 
-- Java 8 o superior
+- Java 21 preferiblemente.
 - Maven 3.x
 - Acceso a una terminal.
 
@@ -25,8 +25,8 @@ Pasos para configurar el entorno de desarrollo:
 1. Clona el repositorio del proyecto:
 
    ```bash
-   git clone https://github.com/MiltonGutierrez/taller1-arep.git
-   cd taller1-arep
+   git clone https://github.com/MiltonGutierrez/AREP-TALLER-2.git
+   cd AREP-TALLER-2
    ```
 
 2. Compila el proyecto usando Maven:
@@ -47,17 +47,18 @@ Pasos para configurar el entorno de desarrollo:
 
 El siguiente diagrama de componentes describe la estructura básica de la aplicación, basada en el patrón **MVC (Modelo-Vista-Controlador)**:
 
-![Diagrama de Componentes](https://github.com/user-attachments/assets/eee00a43-a0a6-4dd5-8275-761dd3be784d)
+![Componentes Arep](https://github.com/user-attachments/assets/8befcfa4-e3dc-4cbf-b2a9-eaa1679a6098)
 
 ### Componentes Principales:
-1. **Browser (Navegador)**:
+1. **Browser - HttpServer - Controller**:
    - **Puerto 8080**: Punto de entrada para las solicitudes HTTP.
    - **HttpServer**: Servidor web básico en Java que maneja solicitudes y respuestas HTTP.
    - **Controller**: Procesa las peticiones del endpoint de /app, valida datos y coordina la interacción entre el servidor y los servicios.
 
-2. **Services (Lógica de Negocio)**:
+2. **NoteApplication (Lógica de Negocio - Modelo - Http )**:
    - **Services**: Implementan la lógica para operaciones CRUD de notas (crear, leer).
    - **Model**: Define la estructura de datos.
+   - **Http**: Es un componente que contiene una implementación propia para representar las clases HttpRequest y HttpResponse.
 
 ### Flujo de la Aplicación:
 1. El navegador envía solicitudes al `HttpServer` (puerto 8080) este procesa la peticion de archivos HTML, CSS, JS e imagenes..
@@ -66,25 +67,32 @@ El siguiente diagrama de componentes describe la estructura básica de la aplica
 4. El `Controller` genera respuestas HTTP (éxito o error) que el `HttpServer` envía al navegador.
 
 ### Diagrama de Clases y Explicación
-Se presentara el diagrama de clases que describe los metodos y las dependencias entre las clases existentes para cada componente del backend.
+Se presentara el diagrama de clases que describe los métodos y las dependencias entre las clases existentes para cada componente del backend.
 
-![image](https://github.com/user-attachments/assets/58f85cae-179b-48fb-8f53-9fa7ea594f1b)
+![Clases AREP](https://github.com/user-attachments/assets/74b2d044-e7b5-4926-9197-474321bc71ba)
 
-#### Componentes Principales:
+#### Clases Principales:
 1. **Clase `HttpServer`**:
    - **Responsabilidad**: Núcleo del servidor web. Escucha en el puerto definido (`PORT`), gestiona conexiones entrantes y delega solicitudes.
    - **Atributos Clave**:
      - `PORT`: Puerto de escucha (ej: `8080`).
      - `WEB_ROOT`: Ruta de archivos estáticos (HTML, CSS, JS).
-     - `noteController`: Controlador para operaciones con notas.
+     - `noteController`: Controlador para peticiones con el endpoint /app/**.
    - **Métodos Destacados**:
      - `runServer()`: Inicia el servidor y acepta conexiones.
      - `handleRequests()`: Dirige solicitudes a métodos específicos (GET/POST) .
      - `handleGetRequests()`: Retorna archivos estáticos que se encuentran en el webroot del servidor (ej: `notes.html`).
+     - `handleAppGetRequests()`: Maneja las solicitudes *GET* realizadas al endpoint /app/** de manera que utiliza la función lamda implementada en el controlador para poder obtener el recurso.
+     - `handleAppPostRequests()`:Maneja las solicitudes *POST* realizadas al endpoint /app/** de manera que utiliza la función lamda implementada en el controlador para poder realizar la petición.
 
 2. **Controladores**:
    - **Interfaz `NoteController`**:
-     - Define métodos como `getNotes()` para obtener notas y `addtNote()` para crear notas.
+     - Define métodos como:
+         - `get()` para guardar los servicios *GET*.
+         - `post()` para  guardar los servicios *POST* mediante el uso de funciones lambda.
+      
+--------------------------- FALTA ------------------------------
+
    - **Clase `NoteControllerImpl`**:
      - Implementa la interfaz y utiliza `NoteServices` para acceder a la lógica de negocio.
      - **Dependencia**: `NoteServices` (inyección de servicios).
