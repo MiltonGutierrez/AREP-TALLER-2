@@ -3,7 +3,7 @@ const apiClient = (() => {
     const url = '/app/';
 
     const getNotes = async () => {
-        const response = await fetch(url);
+        const response = await fetch(url + 'note');
         return response.json();
     };
 

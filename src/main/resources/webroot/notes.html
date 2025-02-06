@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Notas</title>
+    <title>Notes</title>
     <link rel="stylesheet" href="notes.css">
     
 </head>
 <body>
-    <h1 style="text-align: center; color: white;">Crear Nota</h1>
+    <h1 style="text-align: center; color: white;">Create Notes</h1>
 
     <form id="noteForm">
-        <label for="title">Título</label>
+        <label for="title">Title</label>
         <input type="text" id="title" name="title" placeholder="Ingresa el título" required>
 
-        <label for="group">Grupo</label>
+        <label for="group">Group</label>
         <select id="group" name="group" required>
-            <option value="">Selecciona un grupo</option>
+            <option value="">Select a group</option>
             <option value="personal">Personal</option>
-            <option value="trabajo">Trabajo</option>
-            <option value="estudio">Estudio</option>
-            <option value="otro">Otro</option>
+            <option value="work">Work</option>
+            <option value="studies">Studies</option>
+            <option value="other">Other</option>
         </select>
-        <label for="content">Contenido</label>
-        <textarea id="content" name="content" rows="5" placeholder="Escribe el contenido de la nota" required></textarea>
-        <button type="button" onclick="notes.addNote(document.getElementById('title').value,document.getElementById('group').value, document.getElementById('content').value)">Guardar Nota</button>
-        <button type="button" id="showNotesButton", onclick="notes.getNotes()">Mostrar Notas</button>
+        <label for="content">Content</label>
+        <textarea id="content" name="content" rows="5" placeholder="Write the note's content" required></textarea>
+        <button type="button" onclick="notes.addNote(document.getElementById('title').value,document.getElementById('group').value, document.getElementById('content').value)">Save</button>
+        <button type="button" id="showNotesButton", onclick="notes.getNotes()">Show notes</button>
     </form>
 
     <div id="notesContainer"></div>

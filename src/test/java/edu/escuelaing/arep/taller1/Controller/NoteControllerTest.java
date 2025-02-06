@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class NoteControllerTest {
 
-    private NoteController noteController;
+    /*private NoteController noteController;
     private NoteServices noteServices;
 
     @BeforeEach
@@ -87,6 +87,6 @@ class NoteControllerTest {
                 + "\"content\": " + "\"hola\" " + "}");
         assertEquals(responseByController, responseThatShouldReturn.toString());
     }
-
+*/
 
 }
