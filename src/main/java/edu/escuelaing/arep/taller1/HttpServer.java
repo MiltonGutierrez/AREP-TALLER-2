@@ -105,7 +105,6 @@ public class HttpServer {
                 response.append("Content-Type: application/json");
                 response.append("\r\n");
                 response.append(jsonResponse);
-                response.append(jsonResponse);
             } 
             else {
             response.append("HTTP/1.1 200 OK\r\n");
@@ -113,10 +112,10 @@ public class HttpServer {
             response.append("\r\n");
             response.append(jsonResponse);
             }
+        } else {
             response.append(HTTP_400_BAD_REQUEST);
             response.append("Content-Type: text/html");
             response.append("\r\n");
-            response.append("{ \"error\": " + "\""+ "Invalid POST request" + "\"}");
             response.append("{ \"error\": " + "\""+ "Invalid POST request" + "\"}");
         }
         out.print(response.toString());
