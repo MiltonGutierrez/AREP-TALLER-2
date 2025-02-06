@@ -89,7 +89,6 @@ public class HttpServer {
             response.append("Content-Type: text/html\r\n");
             response.append("\r\n");
             response.append("<html><body><h1>404 Not Found</h1></body></html>");
-            
         }
         out.print(response.toString());
         out.flush();

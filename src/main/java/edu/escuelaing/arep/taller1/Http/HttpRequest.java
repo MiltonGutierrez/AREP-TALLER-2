@@ -33,9 +33,14 @@ public class HttpRequest {
             Arrays.toString(params);
             for (String param : params) {
                 String[] keyValue = param.split("=");
-                queryParams.put(keyValue[0], keyValue[1]);
+                queryParams.put(keyValue[0], keyValue.length <= 1 ? "" : keyValue[1]);
             }
         }
+    }
+
+    public static void main(String[] args) {
+        HttpRequest req = new HttpRequest("/app/note", "title=&group=personal&content=hola");
+        System.out.println(req.getQueryParams());
     }
 
 }
