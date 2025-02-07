@@ -96,6 +96,7 @@ Se presentara el diagrama de clases que describe los métodos y las dependencias
    - **Clase `NoteControllerImpl`**:
      - Implementa la interfaz y utiliza *NoteServices* para acceder a la lógica de negocio.
      - Define el metodo *setRoutes()* que permite al programador asignar las rutas o servicios del controlador.
+     - **Dependencia**: `NoteServices` (inyección de servicios).
      - Implementación:
   ```java
 
@@ -131,8 +132,7 @@ Se presentara el diagrama de clases que describe los métodos y las dependencias
         });
     }
    ```
-
-     - **Dependencia**: `NoteServices` (inyección de servicios).
+   
 
 3. **Servicios**:
    - **Interfaz `NoteServices`**:
