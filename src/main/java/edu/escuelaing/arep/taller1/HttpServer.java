@@ -64,6 +64,8 @@ public class HttpServer {
             handleAppGetRequests(req, res, out);
         } else if (httpVerb.equals("POST") && resource.startsWith("/app")) {
             handleAppPostRequests(req, res, out);
+        }
+        else{
             out.println(HTTP_400_BAD_REQUEST);
             out.println("Content-Type: text/html");
             out.println("\r\n");
