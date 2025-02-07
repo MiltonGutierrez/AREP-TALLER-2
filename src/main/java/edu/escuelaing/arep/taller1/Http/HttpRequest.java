@@ -37,10 +37,4 @@ public class HttpRequest {
             }
         }
     }
-
-    public static void main(String[] args) {
-        HttpRequest req = new HttpRequest("/app/note", "title=&group=personal&content=hola");
-        System.out.println(req.getQueryParams());
-    }
-
 }

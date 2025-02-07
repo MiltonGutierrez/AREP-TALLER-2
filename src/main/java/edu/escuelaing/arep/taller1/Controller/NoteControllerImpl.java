@@ -47,7 +47,6 @@ public class NoteControllerImpl implements NoteController {
             String title = req.getQueryParams().get("title");
             String group = req.getQueryParams().get("group");
             String content = req.getQueryParams().get("content");
-            System.out.println(title + " " + group + " " + content);
             try {
                 noteServices.addNote(title, group, content);
                 return "{ \"title\": " + "\"" + title + "\", " + "\"group\": " + "\"" + group + "\", "

@@ -26,10 +26,9 @@ class NoteControllerTest {
     }
 
     @Test
-    public void testGetNotesResponseShouldReturnEmptyArray() {
+    void testGetNotesResponseShouldReturnEmptyArray() {
         String responseByController = noteController.getServices("/app/note").apply(null, null);
         String responseThatShouldReturn = "[" + "]";
-
         assertEquals(responseByController, responseThatShouldReturn);
     }
 
